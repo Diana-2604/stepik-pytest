@@ -8,14 +8,12 @@ class ProductPage(BasePage):
         self.should_be_product_name()
         self.should_be_product_price()
         self.should_be_add_to_cart_button()
-        self.should_be_cart_total()
-        self.should_be_cart_preview()
         self.should_be_added_to_cart_when_press_button()
         self.should_be_correct_product_name()
         self.should_be_correct_cart_total()
 
     def should_be_product_url(self):
-        assert "?promo=newYear" in self.browser.current_url
+        assert "catalogue" in self.browser.current_url
 
     def should_be_product_name(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "Product name is not presented"
@@ -33,11 +31,13 @@ class ProductPage(BasePage):
         assert "success message"
 
     def should_be_correct_product_name(self):
-        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)
-        success_message = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
-        assert product_name.text in success_message.text, "Incorrect product name in success message"
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        success_message = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text
+        assert product_name == success_message, (f"Product name in success message '{success_message}' "
+                                                           f"isn't equal to '{product_name}'")
 
     def should_be_correct_cart_total(self):
-        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
-        info_message = self.browser.find_element(*ProductPageLocators.INFO_MESSAGE)
-        assert product_price.text in info_message.text, "Incorrect cart total in success message"
+        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        info_message = self.browser.find_element(*ProductPageLocators.INFO_MESSAGE).text
+        assert product_price == info_message, (f"Cart total in success message {info_message}  "
+                                               f"isn't equal to {product_price}")

@@ -21,7 +21,7 @@ def pytest_addoption(parser):
                      help="Choose language: en / ru / es / fr")
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
@@ -35,6 +35,7 @@ def browser(request):
 
     if browser_name in supported_browsers:
         if browser_name == "chrome":
+            options.add_argument('headless')
             browser = webdriver.Chrome(options=options)
             browser.maximize_window()
             print(f"\nstart {browser_name} browser for test..")

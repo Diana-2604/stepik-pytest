@@ -13,6 +13,6 @@ class LoginPageLocators():
 class ProductPageLocators():
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn-add-to-basket")
     PRODUCT_NAME = (By.XPATH, "//li[@class='active']")
-    PRODUCT_PRICE = (By.CSS_SELECTOR, ".price_color")
-    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert:nth-child(1)")
-    INFO_MESSAGE = (By.CSS_SELECTOR, ".alert:nth-child(3)")
+    PRODUCT_PRICE = (By.XPATH, "//p[@class='price_color']")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert:nth-child(1) > .alertinner > strong")
+    INFO_MESSAGE = (By.CSS_SELECTOR, ".alert-info > .alertinner > p:nth-child(1) > strong")

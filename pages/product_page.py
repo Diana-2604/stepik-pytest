@@ -11,6 +11,8 @@ class ProductPage(BasePage):
         self.should_be_added_to_cart_when_press_button_after_quiz()
         self.should_be_correct_product_name()
         self.should_be_correct_cart_total()
+        self.should_not_be_success_message()
+        self.should_disappear()
 
     def should_be_product_url(self):
         assert "catalogue" in self.browser.current_url

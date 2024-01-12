@@ -1,15 +1,13 @@
 # импорт базового класса BasePage
 from .base_page import BasePage
-from .login_page import LoginPage
-from .locators import MainPageLocators
-from selenium.webdriver.common.by import By
 
 
 # класс MainPage будет иметь доступ ко всем атрибутам и методам своего класса-предка
 class MainPage(BasePage):
-    def go_to_login_page(self):
-        login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
-        login_link.click()
+    def __init__(self, *args, **kwargs):
+        super(MainPage, self).__init__(*args, **kwargs)
 
-    def should_be_login_link(self):
-        assert self.is_element_present(*MainPageLocators.LOGIN_LINK), "Login link is not presented"
+    # Метод __init__ вызывается при создании объекта.
+    # Конструктор выше с ключевым словом super на самом деле только
+    # вызывает конструктор класса предка и передает ему все те аргументы,
+    # которые мы передали в конструктор MainPage.

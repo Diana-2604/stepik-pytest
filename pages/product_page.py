@@ -15,7 +15,7 @@ class ProductPage(BasePage):
         self.should_disappear()
 
     def should_be_product_url(self):
-        assert "catalogue" in self.browser.current_url
+        assert "catalogue" in self.browser.current_url, "Incorrect url"
 
     def should_be_product_name(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "Product name is not presented"
@@ -30,12 +30,12 @@ class ProductPage(BasePage):
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_CART_BUTTON)
         button.click()
         self.solve_quiz_and_get_code()
-        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE)
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is not presented"
 
     def should_be_added_to_cart_when_press_button(self):
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_CART_BUTTON)
         button.click()
-        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE)
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is not presented"
 
     def should_be_correct_product_name(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text

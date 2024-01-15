@@ -1,4 +1,5 @@
 # stepik-pytest
+## Проект по автоматизации тестирования с помощью Selenium & Python, написанный в стиле PageObject
 ### Запуск тестов
 Команда для запуска тестов для проверки задания: 
 > pytest -v --tb=line --language=en -m need_review
